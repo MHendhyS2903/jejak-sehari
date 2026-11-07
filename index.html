@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Lihat ke mana harimu pergi — visualisasi 3D jadwal hari kerja." />
+    <meta name="theme-color" content="#070b1a" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23070b1a'/%3E%3Cpath d='M6 22c6 0 4-12 10-12s4 12 10 12' fill='none' stroke='%2322d3ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <title>Jejak Sehari</title>
+    <style>
+      @font-face {
+        font-family: 'Plus Jakarta Sans';
+        src: url('./fonts/PlusJakartaSans-Variable.woff2') format('woff2');
+        font-weight: 200 800;
+        font-style: normal;
+        font-display: swap;
+      }
+      html, body, #root { margin: 0; height: 100%; background: #070b1a; }
+      #boot { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; background: radial-gradient(ellipse at 50% 40%, #121a3d, #060914 70%); color: #e8ecff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; text-align: center; }
+      #boot h1 { margin: 0 0 14px; font-size: 40px; font-weight: 800; letter-spacing: -0.02em; background: linear-gradient(100deg, #67e8f9, #c4b5fd); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #boot i { display: block; width: 240px; height: 6px; border-radius: 6px; background: rgba(255,255,255,.1); overflow: hidden; margin: 0 auto 10px; position: relative; }
+      #boot i::after { content: ''; position: absolute; inset: 0; width: 40%; background: linear-gradient(90deg, #22d3ee, #a78bfa); animation: boot 1.2s ease-in-out infinite; }
+      #boot span { font-size: 13px; color: #8f9bd0; }
+      @keyframes boot { from { transform: translateX(-100%); } to { transform: translateX(260%); } }
+    </style>
+  </head>
+  <body>
+    <div id="boot"><div><h1>Jejak Sehari</h1><i></i><span>Memuat…</span></div></div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
