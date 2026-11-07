@@ -1,3 +1,5 @@
+import { Icon } from './icons.jsx'
+
 export default function Intro({ hasSaved, view, onView, canGL, real, onReal, onPlay, onSetup, onSample }) {
   return (
     <div className="intro">
@@ -15,6 +17,12 @@ export default function Intro({ hasSaved, view, onView, canGL, real, onReal, onP
             <b>Peta 2D</b><span>Jalan asli, ringan</span>
           </button>
         </div>
+        <p className={`webgl-note ${canGL ? '' : 'bad'}`} role="note">
+          <Icon name={canGL ? 'info' : 'warn'} size={14} />
+          {canGL
+            ? 'Web ini membutuhkan WebGL untuk tampilan Kota 3D. Pastikan akselerasi hardware aktif di browser; jika tidak, pilih Peta 2D.'
+            : 'WebGL tidak terdeteksi di perangkat ini, jadi Kota 3D tidak bisa dipakai. Aktifkan akselerasi hardware di pengaturan browser, atau gunakan Peta 2D.'}
+        </p>
         <div className="intro-actions">
           {hasSaved ? (
             <>

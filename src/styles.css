@@ -395,3 +395,23 @@ button { cursor: pointer; }
 .dot.r { background: #f472b6; }
 .wk.wide { grid-template-columns: 82px 1fr 40px; }
 .stats3 b { font-size: 14px; }
+
+.intro { display: flex; overflow-y: auto; }
+.intro-card { margin: auto; }
+@media (max-height: 580px) {
+  .intro-card { padding: 16px 22px; border-radius: 20px; }
+  .intro-card h1 { font-size: 30px; margin: 4px 0 0; }
+  .intro-card p { margin: 0 0 10px; font-size: 14px; }
+  .intro .logo svg { width: 34px; height: 34px; }
+  .view-pick { margin: 0 0 10px; }
+  .view-pick button { padding: 7px 10px; }
+  .intro-actions { gap: 6px; margin: 0 0 8px; }
+  .intro-actions .btn.big { padding: 8px 14px; font-size: 14px; }
+  .intro-note { display: none; }
+  .setup { padding: 10px 8px; }
+}
+
+.webgl-note { display: flex; gap: 8px; align-items: flex-start; text-align: left; margin: 0 0 12px !important; padding: 9px 12px; border-radius: 12px; font-size: 12px !important; line-height: 1.45; color: #bfdbfe !important; background: rgba(59, 130, 246, .14); border: 1px solid rgba(96, 165, 250, .4); }
+.webgl-note svg { flex: none; margin-top: 2px; }
+.webgl-note.bad { color: #fde68a !important; background: rgba(245, 158, 11, .16); border-color: rgba(251, 191, 36, .55); }
+@media (max-height: 580px) { .webgl-note { margin: 0 0 8px !important; padding: 6px 10px; font-size: 11px !important; } }
