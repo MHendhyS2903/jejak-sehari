@@ -1,10 +1,11 @@
 import { Component, useEffect, useState } from 'react'
-import { useProgress } from '@react-three/drei'
+import { useSyncExternalStore } from 'react'
+import { glbProgress } from '../scene/glb.js'
 
 const STATUS = ['Membangun kota…', 'Menyalakan lampu jalan…', 'Menata meja kerja…', 'Menyeduh kopi di pantry…', 'Merapikan jadwalmu…']
 
 export default function Loader({ ready, onDone }) {
-  const { progress } = useProgress()
+  const progress = useSyncExternalStore(glbProgress.subscribe, glbProgress.get)
   const [i, setI] = useState(0)
   const [fontOk, setFontOk] = useState(false)
   const [minOk, setMinOk] = useState(false)

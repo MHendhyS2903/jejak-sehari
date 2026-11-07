@@ -1,5 +1,5 @@
 import { useLayoutEffect, useMemo, useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import { preloadGLB, readGLB } from './glb.js'
 import * as THREE from 'three'
 import { recolorMaterial } from '../../lib/recolor.js'
 import files from 'virtual:models'
@@ -8,10 +8,10 @@ export const url = (n) => {
   if (!files[n]) throw new Error(`Model tidak ditemukan: ${n}`)
   return files[n]
 }
-Object.keys(files).forEach((n) => useGLTF.preload(files[n], false))
+Object.keys(files).forEach((n) => preloadGLB(files[n]))
 
 export function useParts(name, paint, fit) {
-  const gltf = useGLTF(url(name), false)
+  const gltf = readGLB(url(name))
   return useMemo(() => {
     gltf.scene.updateMatrixWorld(true)
     const parts = []

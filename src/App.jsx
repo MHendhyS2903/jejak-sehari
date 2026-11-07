@@ -126,7 +126,14 @@ export default function App() {
     if (!canGL) return '2d'
     return v === '2d' ? '2d' : '3d'
   })
-  const [qMode, setQMode] = useState('rendah')
+  const [qMode, setQModeState] = useState(() => {
+    const v = load('quality')
+    return v === 'tinggi' || v === 'auto' || v === 'rendah' ? v : 'rendah'
+  })
+  const setQMode = (v) => {
+    setQModeState(v)
+    save('quality', v)
+  }
   const [autoLevel, setAutoLevel] = useState(initialLevel)
   const [modal, setModal] = useState(null)
   const [toast, setToast] = useState('')
@@ -134,7 +141,6 @@ export default function App() {
   useEffect(() => save('schedule', schedule), [schedule])
   useEffect(() => saveTeam(team), [team])
   useEffect(() => save('weather', weather), [weather])
-  useEffect(() => { if (canGL) save('view', view) }, [view, canGL])
   useEffect(() => {
     if (view !== '2d') return
     const f = document.getElementById('scene-fade')
@@ -360,7 +366,9 @@ export default function App() {
   const decline = useCallback(() => setAutoLevel((l) => Math.max(0, l - 1)), [])
   const incline = useCallback(() => setAutoLevel((l) => Math.min(2, l + 1)), [])
   const onReady = useCallback(() => setReady(true), [])
-  const fallback2d = useCallback(() => {
+  const [err3d, setErr3d] = useState('')
+  const fallback2d = useCallback((e) => {
+    setErr3d(String((e && e.message) || e || 'tidak diketahui').slice(0, 160))
     setView('2d')
     setToast('Grafis 3D tidak bisa dijalankan di perangkat ini. Beralih ke Peta 2D.')
   }, [])
@@ -373,6 +381,7 @@ export default function App() {
     setFollow(false)
     setFree(false)
     setView(v)
+    if (canGL) save('view', v)
   }
 
   return (
@@ -399,7 +408,7 @@ export default function App() {
       {!loaderDone && <Loader ready={ready} onDone={() => setLoaderDone(true)} />}
       {loaderDone && stage === 'intro' && (
         <Intro
-          hasSaved={schedule.custom} view={view} onView={chooseView} canGL={canGL} real={wantReal} onReal={setWantReal}
+          hasSaved={schedule.custom} err3d={err3d} view={view} onView={chooseView} canGL={canGL} real={wantReal} onReal={setWantReal}
           onPlay={() => startPlay(false)} onSetup={openSetup} onSample={playSample}
         />
       )}

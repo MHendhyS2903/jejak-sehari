@@ -415,3 +415,4 @@ button { cursor: pointer; }
 .webgl-note svg { flex: none; margin-top: 2px; }
 .webgl-note.bad { color: #fde68a !important; background: rgba(245, 158, 11, .16); border-color: rgba(251, 191, 36, .55); }
 @media (max-height: 580px) { .webgl-note { margin: 0 0 8px !important; padding: 6px 10px; font-size: 11px !important; } }
+.webgl-note code { font-size: 11px; word-break: break-word; }

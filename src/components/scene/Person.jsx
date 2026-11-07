@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import { useGLTF } from '@react-three/drei'
+import { readGLB } from './glb.js'
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils.js'
 import * as THREE from 'three'
 import { SHtml } from './SHtml.jsx'
@@ -29,7 +29,7 @@ const cupGeo = new THREE.CylinderGeometry(0.04, 0.032, 0.09, 12)
 const cupMat = new THREE.MeshStandardMaterial({ color: '#F8FAFC', roughness: 0.5 })
 
 export function PersonView({ base, look, drive, scale = PERSON_SCALE, name, labels, selected, marker, onSelect, id, color, scene = 'interior', shadows = true, lite = false }) {
-  const gltf = useGLTF(url(`people/${base}`), false)
+  const gltf = readGLB(url(`people/${base}`))
   const group = useRef()
   const ring = useRef()
   const cupRef = useRef()

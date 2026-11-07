@@ -1,6 +1,6 @@
 import { Icon } from './icons.jsx'
 
-export default function Intro({ hasSaved, view, onView, canGL, real, onReal, onPlay, onSetup, onSample }) {
+export default function Intro({ hasSaved, err3d, view, onView, canGL, real, onReal, onPlay, onSetup, onSample }) {
   return (
     <div className="intro">
       <div className="intro-card glass">
@@ -23,6 +23,12 @@ export default function Intro({ hasSaved, view, onView, canGL, real, onReal, onP
             ? 'Web ini membutuhkan WebGL untuk tampilan Kota 3D. Pastikan akselerasi hardware aktif di browser; jika tidak, pilih Peta 2D.'
             : 'WebGL tidak terdeteksi di perangkat ini, jadi Kota 3D tidak bisa dipakai. Aktifkan akselerasi hardware di pengaturan browser, atau gunakan Peta 2D.'}
         </p>
+        {err3d && (
+          <p className="webgl-note bad" role="alert">
+            <Icon name="warn" size={14} />
+            <span>Kota 3D gagal dijalankan, jadi dipakai Peta 2D. Detail: <code>{err3d}</code></span>
+          </p>
+        )}
         <div className="intro-actions">
           {hasSaved ? (
             <>
